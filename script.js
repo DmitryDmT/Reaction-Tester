@@ -74,7 +74,7 @@ var box = document.querySelector('.box');
 var start = '';
 
 var DisplayBox = function () {
-    box.style.display = "block";
+    box.style.display = 'block';
     start = new Date().getTime();
 };
 
@@ -89,7 +89,7 @@ box.onclick = function () {
     var end = new Date().getTime();
     document.querySelector('.time').textContent = (end - start) / 1000 + ' с';
     
-    if (box.style.display === "none") {
+    if (box.style.display === 'none') {
         setTimeout(DisplayBox, GenerateRandomNumber(2000, 1));
     }
     
