@@ -1,3 +1,7 @@
+const POSITION_TOP = 450;
+const MILLISEC = 1000;
+const TIME_APPEAR = 2000;
+
 var GenerateRandomNumber = function (number, additionalNumber) {
     return Math.floor((Math.random() * number) + additionalNumber);
 };
@@ -52,11 +56,11 @@ var GenerateBox = function () {
     document.querySelector('.field').innerHTML = '<div class="box"></div>';
 };
 
-var GenerateRandomPosColor = function () {
+var GeneratePositionColor = function () {
     var box = document.querySelector('.box');
     
-    box.style.top = GenerateRandomNumber(450, 1) + 'px';
-    box.style.left =  GenerateRandomNumber(450, 1) + 'px';
+    box.style.top = GenerateRandomNumber(POSITION_TOP, 1) + 'px';
+    box.style.left =  GenerateRandomNumber(window.innerWidth - 150, 1) + 'px';
     box.style.backgroundColor = colors[GenerateRandomNumber(colors.length, 0)];
     box.style.borderRadius = GenerateRandomShape() + '%';
     
@@ -67,7 +71,7 @@ var GenerateRandomPosColor = function () {
 };
 
 GenerateBox();
-GenerateRandomPosColor();
+GeneratePositionColor();
 
 var box = document.querySelector('.box');
 
@@ -81,17 +85,25 @@ var DisplayBox = function () {
 document.querySelector('#start-button').onclick = function () {
     DisplayBox();
     document.querySelector('#start-button').disabled = true;
+    document.querySelector('#start-button').style.opacity = '0.5';
 };
 
 box.onclick = function () {
     box.style.display = 'none';
     
     var end = new Date().getTime();
-    document.querySelector('.time').textContent = (end - start) / 1000 + ' с';
+    var scoreTime = document.querySelector('.time').textContent = (end - start) / MILLISEC + ' с';
+    
+    var scoreTable = document.querySelector('.score');
+
+    scoreTable.innerHTML += '<tr><td>' + scoreTime + '</td></tr>';
     
     if (box.style.display === 'none') {
-        setTimeout(DisplayBox, GenerateRandomNumber(2000, 1));
+        setTimeout(DisplayBox, GenerateRandomNumber(TIME_APPEAR, 1));
     }
     
-    GenerateRandomPosColor();
+    GeneratePositionColor();
 };
+
+
+
