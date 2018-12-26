@@ -1,4 +1,5 @@
 body {
+    position: relative;
     text-align: center;
     background-color: #3b444b;
     color: #ffffff;
@@ -6,6 +7,10 @@ body {
 
 p {
     font-size: 20px;
+}
+
+.task-info {
+    padding: 0 200px;
 }
 
 .field {
@@ -44,4 +49,92 @@ p {
     box-shadow: 0 0 10px 1px #199bff;
 }
 
+.figures-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 130px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border: 2px solid #199bff;
+}
 
+.figures-container__figure {
+    width: 55px;
+    height: 55px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.figures-container__box {
+    background-color: #14cc7c;
+}
+
+.figures-container__box:hover {
+    box-shadow: 0 0 10px 1px #14cc7c;
+}
+
+.figures-container__circle {
+    border-radius: 50%;
+    background-color: #ff40ff;
+}
+
+.figures-container__circle:hover {
+    box-shadow: 0 0 10px 1px #ff40ff;
+}
+
+.figures-container__heart {
+    position: relative;
+}
+
+.figures-container__heart::before,
+.figures-container__heart::after {
+    content: "";
+    position: absolute; 
+    left: 30px; 
+    top: 0;
+    width: 30px; 
+    height: 50px;
+    background: #ee4156;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg); 
+    transform-origin: 0 100%;
+    
+}
+
+.figures-container__heart::after {
+    left: 0;
+    transform: rotate(45deg); 
+    transform-origin: 100% 100%;
+}
+
+.figures-container__heart:hover::after,
+.figures-container__heart:hover::before {
+    box-shadow: 0 0 10px 1px #ee4156;
+}
+
+.figures-container__all {
+    height: 50px;
+    width: 50px;
+    border-top: 25px solid;
+    border-right: 25px solid;
+    border-bottom: 25px solid;
+    border-top-color: #14cc7c;
+    border-right-color: #ee4156;
+    border-bottom-color: #ff40ff;
+}
+
+.figures-container__all:hover {
+    box-shadow: 
+        5px 0 5px -1px #ee4156,
+        0 -5px 5px -1px #14cc7c,
+        0 5px 5px -1px #ff40ff;
+}
