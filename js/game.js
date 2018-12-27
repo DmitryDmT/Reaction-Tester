@@ -90,6 +90,11 @@
                 
                 setTimeout(DisplayFigureOnRandomPos, 1000, figure);
             });
+            
+            restartButton.addEventListener('click', function () {
+                clickStartSound.play();
+                setTimeout(function () { window.location.reload() }, 500);
+            });
 
             startButton.removeEventListener('click', OnStartClick);
         }
