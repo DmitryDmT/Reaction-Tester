@@ -59,8 +59,6 @@
         if (figureValue !== undefined) {
             clickChoiceSound.play();
         }
-        
-        figuresContainer.removeEventListener('click', OnFiguresClick);
     };
 
     var OnStartClick = function (evt) {
