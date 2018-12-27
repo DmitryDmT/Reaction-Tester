@@ -20,14 +20,14 @@
     
     window.data = {
         GetColor: function () {
-            var random = window.randomizer.GenerateRandomNumber(0, colors.length);
+            var randomColor = window.randomizer.GenerateRandomNumber(0, colors.length);
             
-            return colors[random];
+            return colors[randomColor];
         },
         GetFigure: function () {
-            var random = window.randomizer.GenerateRandomNumber(0, figures.length);
+            var randomFigure = window.randomizer.GenerateRandomNumber(0, figures.length);
             
-            return figures[random];
+            return figures[randomFigure];
         }
     };
 })();
