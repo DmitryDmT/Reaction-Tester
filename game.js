@@ -1,11 +1,11 @@
 (function () {
     var startButton = document.querySelector('.start-button');
+    var timeHolder = document.querySelector('.time');
     var field = document.querySelector('.field');
     var figuresContainer = document.querySelector('.figures-container');
+    var figureValue = null;
 
     field.style.width = (window.innerWidth - 150) + 'px';
-
-    var figureValue = null;
 
     var DisableStartButton = function () {
         startButton.classList.remove('start-button--hover-blue');
@@ -20,6 +20,8 @@
         if (figureValue !== undefined) {
             return figureValue;
         }
+        
+        figuresContainer.removeEventListener('click', OnFiguresClick);
     };
 
     var OnStartClick = function (evt) {
@@ -48,9 +50,16 @@
             
             figure.style.top = window.randomizer.GenerateRandomNumber(1, fieldHeight - figureHeight) + 'px';
             figure.style.left = window.randomizer.GenerateRandomNumber(1, fieldWidth - figureWidth) + 'px';
+            
+            var startTime = new Date().getTime();
 
             field.addEventListener('click', function (evt) {
-
+                var endTime = new Date().getTime();
+                var difference = (endTime - startTime) / 1000;
+                
+                timeHolder.textContent = difference;
+                
+                
             });
 
             startButton.removeEventListener('click', OnStartClick);
