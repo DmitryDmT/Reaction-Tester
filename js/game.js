@@ -29,6 +29,8 @@
         }
     };
     
+    SetActiveButton(restartButton, 'restart', false);
+    
     var DisplayFigureOnRandomPos = function (figureElement) {
         figureElement.style.top = window.randomizer.GenerateRandomNumber(1, field.clientHeight - figureElement.clientHeight) + 'px';
         figureElement.style.left = window.randomizer.GenerateRandomNumber(1, field.clientWidth - figureElement.clientWidth) + 'px';
@@ -41,7 +43,6 @@
         startTime = new Date().getTime();
     };
     
-    SetActiveButton(restartButton, 'restart', false);
 
     var OnFiguresClick = function (evt) {
         figureValue = evt.target.value;
@@ -67,7 +68,7 @@
         }
 
         if (!figureValue) {
-            alert("Незабудь выбрать фигуру");
+            alert("Не забудь выбрать фигуру");
         }
         else {
             SetActiveButton(startButton, 'start', false);
