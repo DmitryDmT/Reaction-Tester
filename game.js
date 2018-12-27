@@ -1,6 +1,7 @@
 (function () {
     var clickStartSound = document.querySelector('.click-start-sound');
     var clickFigureSound = document.querySelector('.click-figure-sound');
+    var clickChoiceSound = document.querySelector('.click-choice-sound');
     
     var startButton = document.querySelector('.start-button');
     var timeHolder = document.querySelector('.time');
@@ -31,6 +32,7 @@
         figureValue = evt.target.value;
 
         if (figureValue !== undefined) {
+            clickChoiceSound.play();
             return figureValue;
         }
         
