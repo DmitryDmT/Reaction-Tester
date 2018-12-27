@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 body {
     position: relative;
     padding: 0;
