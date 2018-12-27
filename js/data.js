@@ -12,11 +12,22 @@
         '#3a55ff'
     ];
     
+    var figures = [
+        'box',
+        'circle',
+        'heart'
+    ];
+    
     window.data = {
         GetColor: function () {
             var random = window.randomizer.GenerateRandomNumber(0, colors.length);
             
             return colors[random];
+        },
+        GetFigure: function () {
+            var random = window.randomizer.GenerateRandomNumber(0, figures.length);
+            
+            return figures[random];
         }
     };
 })();
