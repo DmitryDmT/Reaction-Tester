@@ -4,6 +4,7 @@
     var clickChoiceSound = document.querySelector('.click-choice-sound');
     
     var startButton = document.querySelector('.start-button');
+    var restartButton = document.querySelector('.restart-button');
     var timeHolder = document.querySelector('.time');
     var field = document.querySelector('.field');
     var figuresContainer = document.querySelector('.figures-container');
@@ -13,11 +14,16 @@
 
     field.style.width = (window.innerWidth - 150) + 'px';
 
-    var DisableStartButton = function () {
-        startButton.classList.remove('start-button--hover-blue');
-        startButton.style.opacity = 0.3;
-        startButton.style.cursor = 'default';
-        startButton.disabled = true;
+    var SetActiveButton = function (buttonElement, buttonType, boolType) {
+        if (boolType === false) {
+            buttonElement.classList.remove(`${buttonType}-button--hover`);
+            buttonElement.style.opacity = 0.3;
+            buttonElement.style.cursor = 'default';
+            buttonElement.disabled = true;
+        }
+        else {
+            
+        }
     };
     
     var DisplayFigureOnRandomPos = function (figureElement) {
@@ -31,6 +37,8 @@
         
         startTime = new Date().getTime();
     };
+    
+    SetActiveButton(restartButton, 'restart', false);
 
     var OnFiguresClick = function (evt) {
         figureValue = evt.target.value;
@@ -59,7 +67,8 @@
             alert("Незабудь выбрать фигуру");
         }
         else {
-            DisableStartButton();
+            SetActiveButton(startButton, 'start', false);
+            SetActiveButton(restartButton, 'restart', true);
 
             var figure = document.createElement('div');
             figure.classList.add(figureValue);
