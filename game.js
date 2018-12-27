@@ -1,12 +1,14 @@
 (function () {
     var clickStartSound = document.querySelector('.click-start-sound');
-    var clickFigureSound = document.querySelector('.click-figure-sound')
+    var clickFigureSound = document.querySelector('.click-figure-sound');
     
     var startButton = document.querySelector('.start-button');
     var timeHolder = document.querySelector('.time');
     var field = document.querySelector('.field');
     var figuresContainer = document.querySelector('.figures-container');
     var figureValue = null;
+    
+    var startTime;
 
     field.style.width = (window.innerWidth - 150) + 'px';
 
@@ -21,6 +23,8 @@
         figureElement.style.top = window.randomizer.GenerateRandomNumber(1, field.clientHeight - figureElement.clientHeight) + 'px';
         figureElement.style.left = window.randomizer.GenerateRandomNumber(1, field.clientWidth - figureElement.clientWidth) + 'px';
         figureElement.classList.remove('hidden');
+        
+        startTime = new Date().getTime();
     };
 
     var OnFiguresClick = function (evt) {
@@ -56,8 +60,6 @@
             field.appendChild(figure);
             
             DisplayFigureOnRandomPos(figure);
-            
-            var startTime = new Date().getTime();
 
             figure.addEventListener('click', function (evt) {
                 clickFigureSound.play();
