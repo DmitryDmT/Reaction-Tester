@@ -11,6 +11,7 @@
     var figureValue = null;
     
     var startTime;
+    var difference;
 
     field.style.width = (window.innerWidth - 150) + 'px';
 
@@ -49,7 +50,6 @@
 
         if (figureValue !== undefined) {
             clickChoiceSound.play();
-            return figureValue;
         }
         
         figuresContainer.removeEventListener('click', OnFiguresClick);
@@ -84,7 +84,7 @@
                 clickFigureSound.play();
                 
                 var endTime = new Date().getTime();
-                var difference = (endTime - startTime) / 1000;
+                difference = (endTime - startTime) / 1000;
                 timeHolder.textContent = difference;
                 
                 figure.classList.add('hidden');
