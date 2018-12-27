@@ -22,7 +22,10 @@
             buttonElement.disabled = true;
         }
         else {
-            
+            buttonElement.classList.add(`${buttonType}-button--hover`);
+            buttonElement.style.opacity = 1;
+            buttonElement.style.cursor = 'pointer';
+            buttonElement.disabled = false;
         }
     };
     
