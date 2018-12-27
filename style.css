@@ -119,11 +119,11 @@ p {
 
 .figures-container__circle {
     border-radius: 50%;
-    background-color: #ff40ff;
+    background-color: #ffff00;
 }
 
 .figures-container__circle:hover {
-    box-shadow: 0 0 10px 1px #ff40ff;
+    box-shadow: 0 0 10px 1px #ffff00;
 }
 
 .figures-container__heart {
@@ -164,12 +164,12 @@ p {
     border-bottom: 25px solid;
     border-top-color: #14cc7c;
     border-right-color: #ee4156;
-    border-bottom-color: #ff40ff;
+    border-bottom-color: #ffff00;
 }
 
 .figures-container__all:hover {
     box-shadow: 
         5px 0 5px -1px #ee4156,
         0 -5px 5px -1px #14cc7c,
-        0 5px 5px -1px #ff40ff;
+        0 5px 5px -1px #ffff00;
 }
