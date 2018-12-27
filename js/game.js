@@ -9,6 +9,7 @@
     var field = document.querySelector('.field');
     var figuresContainer = document.querySelector('.figures-container');
     var figureValue = null;
+    var randomFigure = null;
     
     var startTime;
     var difference;
@@ -33,11 +34,16 @@
     SetActiveButton(restartButton, 'restart', false);
     
     var DisplayFigureOnRandomPos = function (figureElement) {
+        console.log(figureElement);
+        
         figureElement.style.top = window.randomizer.GenerateRandomNumber(1, field.clientHeight - figureElement.clientHeight) + 'px';
         figureElement.style.left = window.randomizer.GenerateRandomNumber(1, field.clientWidth - figureElement.clientWidth) + 'px';
         figureElement.classList.remove('hidden');
         
-        if (!figureElement.classList.contains('heart')) {
+        if (figureElement.classList.contains('heart')) {
+            figureElement.style.background = 'none'; // todo разобраться в ошибке наложения background color
+        }
+        else {
             figureElement.style.backgroundColor = window.data.GetColor();
         }
         
@@ -75,9 +81,16 @@
             SetActiveButton(restartButton, 'restart', true);
 
             var figure = document.createElement('div');
-            figure.classList.add(figureValue);
-            field.appendChild(figure);
             
+            if (figureValue !== 'all') {
+                figure.classList.add(figureValue);
+            }
+            else {
+                randomFigure = window.data.GetFigure();
+                figure.classList.add(randomFigure);
+            }
+            
+            field.appendChild(figure);
             DisplayFigureOnRandomPos(figure);
 
             figure.addEventListener('click', function (evt) {
@@ -88,6 +101,12 @@
                 timeHolder.textContent = difference;
                 
                 figure.classList.add('hidden');
+                
+                if (randomFigure !== null) {
+                    figure.classList.remove(randomFigure);
+                    randomFigure = window.data.GetFigure();
+                    figure.classList.add(randomFigure);
+                }
                 
                 setTimeout(DisplayFigureOnRandomPos, 1000, figure);
             });
