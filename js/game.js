@@ -7,12 +7,16 @@
     var restartButton = document.querySelector('.restart-button');
     var timeHolder = document.querySelector('.time');
     var field = document.querySelector('.field');
+    var scoreTable = document.querySelector('.score-table');
     var figuresContainer = document.querySelector('.figures-container');
+    
     var figureValue = null;
     var randomFigure = null;
     
     var startTime;
     var difference;
+    
+    var scoreList = [];
 
     field.style.width = (window.innerWidth - 150) + 'px';
 
@@ -34,8 +38,6 @@
     SetActiveButton(restartButton, 'restart', false);
     
     var DisplayFigureOnRandomPos = function (figureElement) {
-        console.log(figureElement);
-        
         figureElement.style.top = window.randomizer.GenerateRandomNumber(1, field.clientHeight - figureElement.clientHeight) + 'px';
         figureElement.style.left = window.randomizer.GenerateRandomNumber(1, field.clientWidth - figureElement.clientWidth) + 'px';
         figureElement.classList.remove('hidden');
@@ -100,6 +102,12 @@
                 difference = (endTime - startTime) / 1000;
                 timeHolder.textContent = difference;
                 
+                scoreList.push(difference);
+                scoreList.sort(function (a, b) {
+                    return a - b;
+                });
+                scoreTable.innerHTML += '<tr class="score-table__score-row"><td class="score-table__score">' + difference + '</td></tr>';
+                
                 figure.classList.add('hidden');
                 
                 if (randomFigure !== null) {
@@ -113,7 +121,8 @@
             
             restartButton.addEventListener('click', function () {
                 clickStartSound.play();
-                setTimeout(function () { window.location.reload() }, 500);
+                alert('Лучшее время: ' + scoreList[0]);
+                window.location.reload();
             });
 
             startButton.removeEventListener('click', OnStartClick);
