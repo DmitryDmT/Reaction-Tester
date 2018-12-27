@@ -7,7 +7,8 @@
     <body>
         <h1>Проверь свою реакцию!</h1>
         <p class="task-info">Нажимай на появляющиеся круги и квадраты настолько быстро, насколько это возможно. Ты можешь выбрать фигуру, которая будет появляться на поле, либо все фигуры случайным образом.</p>
-        <button type="button" class="start-button  start-button--hover-blue">Старт</button>
+        <button type="button" class="start-button  start-button--hover">Старт</button>
+        <button type="button" class="restart-button  restart-button--hover">Начать заново</button>
         <p>Твое время: <b><span class="time"></span></b></p>
         <div class="figures-container">
             <button type="button" class="figures-container__figure  figures-container__box" value="box"></button>
@@ -21,8 +22,8 @@
             <audio class="click-choice-sound  hidden" src="audio/UI_SoundPack11_Select_v14.wav" preload="auto" autoplay></audio>
         </div>
         
-        <script src="randomizer.js"></script>
-        <script src="data.js"></script>
-        <script src="game.js"></script>
+        <script src="js/randomizer.js"></script>
+        <script src="js/data.js"></script>
+        <script src="js/game.js"></script>
     </body>
 </html>
