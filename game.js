@@ -24,7 +24,9 @@
 
     var OnStartClick = function (evt) {
         var windowWidth = window.innerWidth - 150;
-
+        var fieldHeight = field.clientHeight;
+        var fieldWidth = field.clientWidth;
+        
         if (field.style.width > windowWidth + 'px' || field.style.width < windowWidth + 'px') {
             alert("Поле слишком маленькое / большое. Сейчас перезагрузится страница.");
             window.location.reload();
@@ -38,9 +40,14 @@
 
             var figure = document.createElement('div');
             figure.classList.add(figureValue);
-            figure.style.top = '0';
-            figure.style.left = '0';
+            
             field.appendChild(figure);
+            
+            var figureWidth = figure.clientWidth;
+            var figureHeight = figure.clientHeight;
+            
+            figure.style.top = window.randomizer.GenerateRandomNumber(1, fieldHeight - figureHeight) + 'px';
+            figure.style.left = window.randomizer.GenerateRandomNumber(1, fieldWidth - figureWidth) + 'px';
 
             field.addEventListener('click', function (evt) {
 
