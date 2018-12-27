@@ -22,8 +22,15 @@ var OnFiguresClick = function (evt) {
 };
 
 var OnStartClick = function (evt) {
+    var windowWidth = window.innerWidth - 150;
+    
+    if (field.style.width > windowWidth + 'px' || field.style.width < windowWidth + 'px') {
+        alert("Поле слишком маленькое / большое. Сейчас перезагрузится страница.");
+        window.location.reload();
+    }
+    
     if (!figureValue) {
-        alert("Выбери фигуру");
+        alert("Незабудь выбрать фигуру");
     }
     else {
         DisableStartButton();
