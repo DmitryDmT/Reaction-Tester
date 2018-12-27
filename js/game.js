@@ -25,6 +25,10 @@
         figureElement.style.left = window.randomizer.GenerateRandomNumber(1, field.clientWidth - figureElement.clientWidth) + 'px';
         figureElement.classList.remove('hidden');
         
+        if (!figureElement.classList.contains('heart')) {
+            figureElement.style.backgroundColor = window.data.GetColor();
+        }
+        
         startTime = new Date().getTime();
     };
 
