@@ -1,4 +1,7 @@
 (function () {
+    var clickStartSound = document.querySelector('.click-start-sound');
+    var clickFigureSound = document.querySelector('.click-figure-sound')
+    
     var startButton = document.querySelector('.start-button');
     var timeHolder = document.querySelector('.time');
     var field = document.querySelector('.field');
@@ -31,6 +34,8 @@
     };
 
     var OnStartClick = function (evt) {
+        clickStartSound.play();
+        
         var windowWidth = window.innerWidth - 150;
         var fieldHeight = field.clientHeight;
         var fieldWidth = field.clientWidth;
@@ -55,6 +60,8 @@
             var startTime = new Date().getTime();
 
             figure.addEventListener('click', function (evt) {
+                clickFigureSound.play();
+                
                 var endTime = new Date().getTime();
                 var difference = (endTime - startTime) / 1000;
                 timeHolder.textContent = difference;
