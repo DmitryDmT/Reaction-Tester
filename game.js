@@ -13,6 +13,12 @@
         startButton.style.cursor = 'default';
         startButton.disabled = true;
     };
+    
+    var DisplayFigureOnRandomPos = function (figureElement) {
+        figureElement.style.top = window.randomizer.GenerateRandomNumber(1, field.clientHeight - figureElement.clientHeight) + 'px';
+        figureElement.style.left = window.randomizer.GenerateRandomNumber(1, field.clientWidth - figureElement.clientWidth) + 'px';
+        figureElement.classList.remove('hidden');
+    };
 
     var OnFiguresClick = function (evt) {
         figureValue = evt.target.value;
@@ -42,24 +48,20 @@
 
             var figure = document.createElement('div');
             figure.classList.add(figureValue);
-            
             field.appendChild(figure);
             
-            var figureWidth = figure.clientWidth;
-            var figureHeight = figure.clientHeight;
-            
-            figure.style.top = window.randomizer.GenerateRandomNumber(1, fieldHeight - figureHeight) + 'px';
-            figure.style.left = window.randomizer.GenerateRandomNumber(1, fieldWidth - figureWidth) + 'px';
+            DisplayFigureOnRandomPos(figure);
             
             var startTime = new Date().getTime();
 
-            field.addEventListener('click', function (evt) {
+            figure.addEventListener('click', function (evt) {
                 var endTime = new Date().getTime();
                 var difference = (endTime - startTime) / 1000;
-                
                 timeHolder.textContent = difference;
                 
+                figure.classList.add('hidden');
                 
+                setTimeout(DisplayFigureOnRandomPos, 1000, figure);
             });
 
             startButton.removeEventListener('click', OnStartClick);
