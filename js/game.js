@@ -114,7 +114,7 @@
                     figure.classList.add(randomFigure);
                 }
                 
-                setTimeout(DisplayFigureOnRandomPos, 1000, figure);
+                setTimeout(DisplayFigureOnRandomPos, window.randomizer.GenerateRandomNumber(100, 1000), figure);
             });
             
             restartButton.addEventListener('click', function () {
