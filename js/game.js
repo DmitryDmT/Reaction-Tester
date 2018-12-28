@@ -37,13 +37,27 @@
     
     SetActiveButton(restartButton, 'restart', false);
     
+    var CreateFigure = function () {
+        var figure = document.createElement('div');
+        
+        if (figureValue !== 'all') {
+            figure.classList.add(figureValue);
+        }
+        else {
+            randomFigure = window.data.GetFigure();
+            figure.classList.add(randomFigure);
+        }
+        
+        return figure;
+    };
+    
     var DisplayFigureOnRandomPos = function (figureElement) {
         figureElement.style.top = window.randomizer.GenerateRandomNumber(1, field.clientHeight - figureElement.clientHeight) + 'px';
         figureElement.style.left = window.randomizer.GenerateRandomNumber(1, field.clientWidth - figureElement.clientWidth) + 'px';
         figureElement.classList.remove('hidden');
         
         if (figureElement.classList.contains('heart')) {
-            figureElement.style.background = 'none'; // todo разобраться в ошибке наложения background color
+            figureElement.style.background = 'none'; // TODO разобраться в ошибке наложения background color
         }
         else {
             figureElement.style.backgroundColor = window.data.GetColor();
@@ -52,6 +66,39 @@
         startTime = new Date().getTime();
     };
     
+    var DisplayTime = function () {
+        var endTime = new Date().getTime();
+        difference = (endTime - startTime) / 1000;
+        timeHolder.textContent = difference;
+    };
+    
+    var DisplayListTime = function () { // TODO добавить ограничение по строкам
+        scoreList.push(difference);
+        scoreList.sort(function (a, b) {
+            return a - b;
+        });
+        scoreTable.innerHTML += `<tr class="score-table__score-row"><td class="score-table__score">${difference}</td></tr>`;
+    };
+    
+    var SetRestartSequence = function () {
+        clickStartSound.play();
+        if (scoreList[0] !== undefined) {
+            alert(`Лучшее время: ${scoreList[0]}`);
+        }
+        window.location.reload();
+    };
+    
+    var SetAppearanceFigureSequence = function (figureEl) {
+        figureEl.classList.add('hidden');
+        
+        if (randomFigure !== null) {
+            figureEl.classList.remove(randomFigure);
+            randomFigure = window.data.GetFigure();
+            figureEl.classList.add(randomFigure);
+        }
+        
+        setTimeout(DisplayFigureOnRandomPos, window.randomizer.GenerateRandomNumber(100, 1000), figureEl);
+    };
 
     var OnFiguresClick = function (evt) {
         figureValue = evt.target.value;
@@ -80,47 +127,20 @@
             SetActiveButton(startButton, 'start', false);
             SetActiveButton(restartButton, 'restart', true);
 
-            var figure = document.createElement('div');
-            
-            if (figureValue !== 'all') {
-                figure.classList.add(figureValue);
-            }
-            else {
-                randomFigure = window.data.GetFigure();
-                figure.classList.add(randomFigure);
-            }
-            
+            var figure = CreateFigure();
             field.appendChild(figure);
             DisplayFigureOnRandomPos(figure);
 
             figure.addEventListener('click', function (evt) {
                 clickFigureSound.play();
                 
-                var endTime = new Date().getTime();
-                difference = (endTime - startTime) / 1000;
-                timeHolder.textContent = difference;
-                
-                scoreList.push(difference);
-                scoreList.sort(function (a, b) {
-                    return a - b;
-                });
-                scoreTable.innerHTML += '<tr class="score-table__score-row"><td class="score-table__score">' + difference + '</td></tr>';
-                
-                figure.classList.add('hidden');
-                
-                if (randomFigure !== null) {
-                    figure.classList.remove(randomFigure);
-                    randomFigure = window.data.GetFigure();
-                    figure.classList.add(randomFigure);
-                }
-                
-                setTimeout(DisplayFigureOnRandomPos, window.randomizer.GenerateRandomNumber(100, 1000), figure);
+                DisplayTime();
+                DisplayListTime();
+                SetAppearanceFigureSequence(figure);
             });
             
             restartButton.addEventListener('click', function () {
-                clickStartSound.play();
-                alert('Лучшее время: ' + scoreList[0]);
-                window.location.reload();
+                SetRestartSequence();
             });
 
             startButton.removeEventListener('click', OnStartClick);
